@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React , { useState } from 'react'
+import { ChromePicker } from 'react-color'
+import './App.css'
 
 function App() {
+  const [color, setColor] = useState('#fff')
+  const [showColorPicker, setShowColorPicker] = useState(false)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button onClick={() => setShowColorPicker(showColorPicker => !showColorPicker)}
+      >
+        {showColorPicker ? ' Close color picker' : 'pick a color'}
+      </button>
+      {showColorPicker && (<ChromePicker 
+        color={color} 
+        onChange={updetedColor => setColor(updetedColor.hex)}
+        />
+      )}
+      
+      <h2>pilih {color}</h2>
     </div>
   );
 }
